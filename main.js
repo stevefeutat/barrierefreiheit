@@ -1,4 +1,9 @@
-const resultDisplay = document.querySelector("#result");
+const contentDisplay = document.querySelector("#content");
+const topicDisplay = document.getElementById("topic");
+const topicFolder = localStorage.getItem("topicValue");
+topicDisplay.innerHTML = topicFolder;
+const scoreDisplay = document.getElementById("score");
+scoreDisplay.textContent = "Congratulation you found all the matches";
 var cardBoard = [
   [0, 0, 0, 0],
   [0, 0, 0, 0],
@@ -18,7 +23,7 @@ function createCardBoard() {
     for (var j = 0; j < cardBoard[i].length; j++) {
       if (cardBoard[i][j] === 0) {
         txt +=
-          "<button class='btn btn-primary m-2' style='height: 100px; width: 100px' onClick='flipCard(\"" +
+          "<button class='btn btn-primary m-1' style='height: 100px; width: 100px' onClick='flipCard(\"" +
           i +
           "-" +
           j +
@@ -27,51 +32,52 @@ function createCardBoard() {
         txt +=
           "<img src='" +
           getImage(cardBoard[i][j]) +
-          "'style='height: 100px; width: 100px class='m-2'>";
+          "style='height: 100px; width: 100px class='m-2'>";
       }
     }
     txt += "</div>";
   }
-  resultDisplay.innerHTML = txt;
+  contentDisplay.innerHTML = txt;
 }
 function getImage(value) {
-  var imageTxt = "images/";
+  var imageTxt = `images/${topicFolder}/`;
   switch (value) {
     case 1:
-      imageTxt += "avocado.png";
+      imageTxt += "image1.png' alt='bear'";
       break;
     case 2:
-      imageTxt += "brain.png";
+      imageTxt += "image2.png' alt='narwhal'";
       break;
     case 3:
-      imageTxt += "ballon.png";
+      imageTxt += "image3.png' alt='cow'";
       break;
     case 4:
-      imageTxt += "done.png";
+      imageTxt += "image4.png' alt='crocodile'";
       break;
     case 5:
-      imageTxt += "flower.png";
+      imageTxt += "image5.png' alt='parot'";
       break;
     case 6:
-      imageTxt += "lemon.png";
+      imageTxt += "image6.png' alt='duck'";
       break;
     case 7:
-      imageTxt += "new-years-eve.png";
+      imageTxt += "image7.png' alt='elephant'";
       break;
     case 8:
-      imageTxt += "santa-claus.png";
+      imageTxt += "image8.png' alt='giraffe'";
       break;
     case 9:
-      imageTxt += "tangerine.png";
+      imageTxt += "image9.png' alt='gorilla'";
       break;
     case 10:
-      imageTxt += "wedding.png";
+      imageTxt += "image10.png' alt='hippo'";
       break;
     default:
       console.log("Cannot find image" + value);
   }
   return imageTxt;
 }
+
 //display card at the position
 function flipCard(cardCoordinate) {
   if (ready) {
