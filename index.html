@@ -14,20 +14,22 @@
 
 <form action="spiel.php" method="post" accept-charset="utf-8">
     Name:
-    <input type="text"  name="name" id="name" size="30"><br>
+    <input type="text" name="name" id="name" size="30"><br>
     Feldgröße:
     <select name="spielfeldgroesse" id="groesse">
-        <option value="3">3*3</option>
+        <option value="3">3*4</option>
         <option value="4">4*4</option>
+        <option value="5">5*4</option>
     </select> <br/>
+    Bildauswahl:
+    <select name="bildwahl" id="bilder">
+        <option value="flower">Blumen</option>
+        <option value="animals">Tiere</option>        
+    </select> <br />
 
-    Motivwahl:
-    <select name="bildwahl" id="bildwahl">
-        <option value="blumen">blumen</option>
-        <option value="tiere">tiere</option>
-    </select>
+
     <br>
-    <input type="reset"  value="Leeren">
+    <input type="reset"  value="Leeren" id="clear">
     <input type="submit" value="Senden" id="submit">
 </form>
 </fieldset>
