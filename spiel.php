@@ -1,7 +1,7 @@
 <?php
 $name = $_POST["name"];
 $groesse = $_POST["spielfeldgroesse"];
-$bildwahl = $_POST["bildwahl"];
+$bilder = $_POST["bildwahl"];
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +17,9 @@ $bildwahl = $_POST["bildwahl"];
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-        <!-- collection[i].style.width = "200px"; -->
+    <!-- collection[i].style.width = "200px"; -->
     <!-- collection[i].style.height = "200px"; -->
+   
     <script type="text/javascript">
 
     function Bildgroesser () {
@@ -41,10 +42,8 @@ $bildwahl = $_POST["bildwahl"];
     collection[i].style.transform = "scale(1,1)";
     }
 
-}
-
-    </script>
-
+  }
+</script>
   </head>
 
   <body>
@@ -52,7 +51,12 @@ $bildwahl = $_POST["bildwahl"];
     <?php 
         echo "Hallo $name <br />";
         echo "Spielfeldgröße: $groesse <br />";
-        echo "Bilder: $bildwahl <br />";
+        if ($bilder == 1){
+        echo "Motivwahl: Tiere <br />";
+        } else {
+        echo "Motivwahl: Blumen <br />";
+        }
+
     ?>
     <div class="container">
         <h2>Spielfeld</h2>
@@ -68,6 +72,7 @@ $bildwahl = $_POST["bildwahl"];
     <button onclick="Bildkleiner ()">
         kleiner
     </button>
+
     <!-- <script src="main.js"></script> -->
     <script type="text/JavaScript">
     const resultDisplay = document.querySelector("#result");
@@ -76,12 +81,12 @@ $bildwahl = $_POST["bildwahl"];
    ?>
     if (card == 3){
     var cardBoard = [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
     ];
     } 
-    else{
+    else if (card == 4){
     var cardBoard = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -89,6 +94,16 @@ $bildwahl = $_POST["bildwahl"];
     [0, 0, 0, 0],
     ];
     }
+    else {
+      var cardBoard = [
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    ];
+    }
+
   
 
 var randomBoard = generateCardBoard();
@@ -107,7 +122,7 @@ function createCardBoard() {
           i +
           "-" +
           j +
-          "\")'>Card</button>";
+          "\")'>Card </button>";
       } else {
         txt +=
           "<img src='" +
@@ -119,43 +134,86 @@ function createCardBoard() {
   }
   resultDisplay.innerHTML = txt;
 }
+<?php
+       echo "var bildwahl ='$bilder';";
+   ?>
 function getImage(value) {
-  var imageTxt = "images/";
+  if (bildwahl == 1){
+  var imageTxt = "http://www.vanderfriedrich.de/images/animals/";
   switch (value) {
     case 1:
-      imageTxt += "avocado.png";
+      imageTxt += "image1.png";
       break;
     case 2:
-      imageTxt += "brain.png";
+      imageTxt += "image2.png";
       break;
     case 3:
-      imageTxt += "ballon.png";
+      imageTxt += "image3.png";
       break;
     case 4:
-      imageTxt += "done.png";
+      imageTxt += "image4.png";
       break;
     case 5:
-      imageTxt += "flower.png";
+      imageTxt += "image5.png";
       break;
     case 6:
-      imageTxt += "lemon.png";
+      imageTxt += "image6.png";
       break;
     case 7:
-      imageTxt += "new-years-eve.png";
+      imageTxt += "image7.png";
       break;
     case 8:
-      imageTxt += "santa-claus.png";
+      imageTxt += "image8.png";
       break;
     case 9:
-      imageTxt += "tangerine.png";
+      imageTxt += "image9.png";
       break;
     case 10:
-      imageTxt += "wedding.png";
+      imageTxt += "image10.png";
       break;
     default:
       console.log("Cannot find image" + value);
   }
   return imageTxt;
+}
+else {
+  var imageTxt = "http://www.vanderfriedrich.de/images/flower/";
+  switch (value) {
+    case 1:
+      imageTxt += "blume01.png";
+      break;
+    case 2:
+      imageTxt += "blume02.png";
+      break;
+    case 3:
+      imageTxt += "blume03.png";
+      break;
+    case 4:
+      imageTxt += "blume04.png";
+      break;
+    case 5:
+      imageTxt += "blume05.png";
+      break;
+    case 6:
+      imageTxt += "blume06.png";
+      break;
+    case 7:
+      imageTxt += "blume07.png";
+      break;
+    case 8:
+      imageTxt += "blume08.png";
+      break;
+    case 9:
+      imageTxt += "blume09.png";
+      break;
+    case 10:
+      imageTxt += "blume10.png";
+      break;
+    default:
+      console.log("Cannot find image" + value);
+  }
+  return imageTxt;
+}
 }
 //display card at the position
 function flipCard(cardCoordinate) {
@@ -221,7 +279,6 @@ function generateCardBoard() {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
-    <br />
-    <a href="index.html">Spieleinstellungen</a>
+
   </body>
 </html>
