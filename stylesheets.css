@@ -1,0 +1,26 @@
+body{
+    font-family: sans-serif;
+    font: arial;
+    font-size: 14px;
+}
+
+h1{
+    font-family: sans-serif;
+    font: arial;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+h2{
+    font-family: sans-serif;
+    font: arial;
+    font-size: 20px;
+}
+
+.spielinformationen{
+    size: 400px;
+    overflow: hidden;
+    padding: 1%;
+    border: 1px solid black;
+    margin: 1%;
+}
