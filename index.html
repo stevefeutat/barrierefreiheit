@@ -4,33 +4,36 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="stylesheet.css">
+
     <title>Spielmenu</title>
   </head>
 
   <body>
 
-<p><a href="spiel.html">Spiel</a></p>
+
 <fieldset>
 
 <form action="spiel.php" method="post" accept-charset="utf-8">
-    Name:
-    <input type="text" name="name" id="name" size="30"><br>
-    Feldgröße:
-    <select name="spielfeldgroesse" id="groesse">
-        <option value="3">3*4</option>
-        <option value="4">4*4</option>
-        <option value="5">5*4</option>
-    </select> <br/>
-    Bildauswahl:
-    <select name="bildwahl" id="bilder">
-        <option value="flower">Blumen</option>
-        <option value="animals">Tiere</option>        
+    Bitte geben Sie Ihren Namen ein:
+    <input type="text" name="name" id="name" size="30" aria-label="Eingabefeld Spielername"><br />
+    Bitte wählen Sie die Spielfeldgröße:
+    <select name="spielfeldgroesse" id="groesse" aria-label="Auswahlmenü Spielfeldgröße">
+        <option value="12">12 Spielkarten</option>
+        <option value="16">16 Spielkarten</option>
+        <option value="20">20 Spielkarten</option>
+    </select> <br />
+    Bitte wählen Sie die Kategorie der Memory Karten aus:
+    <select name="bildwahl" id="bilder" aria-label="Auswahlmenü Motivwahl">
+        <option value="1">Tiere</option>     
+        <option value="2">Blumen</option>   
     </select> <br />
 
 
     <br>
-    <input type="reset"  value="Leeren" id="clear">
-    <input type="submit" value="Senden" id="submit">
+    <input type="reset"  value="Leeren" id="clear" aria-label="Button für Leeren des Formulars">
+    <input type="submit" value="Senden" id="submit" aria-label="Button für Senden des Formulars">
 </form>
 </fieldset>
   </body>
