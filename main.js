@@ -27,7 +27,7 @@ function createCardBoard() {
     for (var j = 0; j < cardBoard[i].length; j++) {
       if (cardBoard[i][j] === 0) {
         txt +=
-          "<button class='btn btn-primary m-1' style='height: 100px; width: 100px' onClick='flipCard(\"" +
+          "<button class='btn btn-primary m-1' style='height: 110px; width: 110px' onClick='flipCard(\"" +
           i +
           "-" +
           j +
@@ -36,7 +36,7 @@ function createCardBoard() {
         txt +=
           "<img src='" +
           getImage(cardBoard[i][j]) +
-          "style='height: 100px; width: 100px class='m-1'>";
+          "style='height: 110px; width: 110px class='m-1'>";
       }
     }
     txt += "</div>";
@@ -46,7 +46,8 @@ function createCardBoard() {
 
 function createProgressBar(value) {
   var score = (value / cardBoard.length) * cardBoard.length;
-  txt = "<div class='progress'style='height:30px;'>";
+  var txt2="<div style='text-align: center'><progress value="+score+" max='100'>"+score+" %</progress></div>";
+  var txt = "<div class='progress'style='height:30px;'>";
   txt +=
     "<div class='progress-bar progress-bar' role='progressbar'aria-valuenow=" +
     score +
@@ -56,7 +57,7 @@ function createProgressBar(value) {
     score +
     "% Complete</span>";
   txt += "</div></div>";
-  progressDisplay.innerHTML = txt;
+  progressDisplay.innerHTML = txt2;
 }
 
 function getImage(value) {

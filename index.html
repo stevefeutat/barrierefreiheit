@@ -13,25 +13,21 @@
 <body>
   <a href="#content" class="sr-only sr-only-focusable">Zum Hauptinhalt springen</a>
   <h2>MEMORY GAME</h2>
-  <p class="normalertext"></p>
-
-
-  <div id="myProgress"></div>
-  <p class="normalertext"></p>
-  <div class="button-group" style="text-align: center">
+  <div class="button-group" style="text-align: left">
     <button onclick="window.location.href = 'help.html';" type="submit" class="btn btn-primary m-1"
       style="height: 50px; width: 100px">Help</button>
     <button onclick="window.location.href = 'index.html';" type="submit" class="btn btn-primary m-1"
       style="height: 50px; width: 100px">Restart</button>
   </div>
+  <h3 style="text-align: center"><label class="progresstxt">Game progress:</label><br></h3>
+  <div id="myProgress"></div>
+  <div class="topictext" style="text-align: center">
+    <h3>Topic: <span id="topic"></span> </h3>
+  </div>
   <div class="scoretext" style="text-align: center">
     <h3>Score: <span id="score"></span> </h3>
   </div>
-  <div class="topictext" style="text-align: center">
-    <h3>Topic: <span id="topic"></span> </h3>
-    <p class="normalertext"></p>
-  </div>
-  <p class="normalertext"></p>
+
   <div class="container">
 
     <div id="content" tabindex="-1"></div>
