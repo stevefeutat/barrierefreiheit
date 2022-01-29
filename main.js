@@ -1,9 +1,10 @@
 const contentDisplay = document.querySelector("#content");
+const progressDisplay = document.querySelector("#myProgress");
 const topicDisplay = document.getElementById("topic");
 const topicFolder = localStorage.getItem("topicValue");
 topicDisplay.innerHTML = topicFolder;
 const scoreDisplay = document.getElementById("score");
-scoreDisplay.textContent = "Congratulation you found all the matches";
+scoreDisplay.textContent = 0;
 var cardBoard = [
   [0, 0, 0, 0],
   [0, 0, 0, 0],
@@ -13,9 +14,12 @@ var cardBoard = [
 
 var randomBoard = generateCardBoard();
 var oldSelection = [];
+var winningCards = [];
 var numberOfDisplayedImages = 0;
 var ready = true;
 createCardBoard();
+createProgressBar(0);
+
 function createCardBoard() {
   var txt = "";
   for (var i = 0; i < cardBoard.length; i++) {
@@ -39,38 +43,113 @@ function createCardBoard() {
   }
   contentDisplay.innerHTML = txt;
 }
+
+function createProgressBar(value) {
+  var score = (value / cardBoard.length) * cardBoard.length;
+  txt = "<div class='progress'style='height:30px;'>";
+  txt +=
+    "<div class='progress-bar progress-bar' role='progressbar'aria-valuenow=" +
+    score +
+    " aria-valuemin='0' aria-valuemax='100' style='width:" +
+    score +
+    "%'> <span class='sr-only'>" +
+    score +
+    "% Complete</span>";
+  txt += "</div></div>";
+  progressDisplay.innerHTML = txt;
+}
+
 function getImage(value) {
   var imageTxt = `images/${topicFolder}/`;
+  let altTxt;
   switch (value) {
     case 1:
-      imageTxt += "image1.png' alt='bear'";
+      altTxt =
+        topicFolder === "animals"
+          ? "bear "
+          : topicFolder === "flowers"
+          ? "flower1 "
+          : "fruit1 ";
+      imageTxt += "image1.png' alt=" + altTxt + " title=" + altTxt;
       break;
     case 2:
-      imageTxt += "image2.png' alt='narwhal'";
+      altTxt =
+        topicFolder === "animals"
+          ? "narwhal "
+          : topicFolder === "flowers"
+          ? "flower2 "
+          : "fruit2 ";
+      imageTxt += "image2.png' alt=" + altTxt + " title=" + altTxt;
       break;
     case 3:
-      imageTxt += "image3.png' alt='cow'";
-      break;
+      altTxt =
+        topicFolder === "animals"
+          ? "cow "
+          : topicFolder === "flowers"
+          ? "flower3 "
+          : "fruit3 ";
+      imageTxt += "image3.png' alt=" + altTxt + " title=" + altTxt;
     case 4:
-      imageTxt += "image4.png' alt='crocodile'";
+      altTxt =
+        topicFolder === "animals"
+          ? "crocodile "
+          : topicFolder === "flowers"
+          ? "flower4 "
+          : "fruit4 ";
+      imageTxt += "image4.png' alt=" + altTxt + " title=" + altTxt;
       break;
     case 5:
-      imageTxt += "image5.png' alt='parot'";
+      altTxt =
+        topicFolder === "animals"
+          ? "parot "
+          : topicFolder === "flowers"
+          ? "flower5 "
+          : "fruit5 ";
+      imageTxt += "image5.png' alt=" + altTxt + " title=" + altTxt;
       break;
     case 6:
-      imageTxt += "image6.png' alt='duck'";
-      break;
+      altTxt =
+        topicFolder === "animals"
+          ? "duck "
+          : topicFolder === "flowers"
+          ? "flower6 "
+          : "fruit6 ";
+      imageTxt += "image6.png' alt=" + altTxt + " title=" + altTxt;
     case 7:
-      imageTxt += "image7.png' alt='elephant'";
+      altTxt =
+        topicFolder === "animals"
+          ? "elephant "
+          : topicFolder === "flowers"
+          ? "flower7 "
+          : "fruit7 ";
+      imageTxt += "image7.png' alt=" + altTxt + " title=" + altTxt;
       break;
     case 8:
-      imageTxt += "image8.png' alt='giraffe'";
+      altTxt =
+        topicFolder === "animals"
+          ? "giraffe "
+          : topicFolder === "flowers"
+          ? "flower8 "
+          : "fruit8 ";
+      imageTxt += "image8.png' alt=" + altTxt + " title=" + altTxt;
       break;
     case 9:
-      imageTxt += "image9.png' alt='gorilla'";
+      altTxt =
+        topicFolder === "animals"
+          ? "gorilla "
+          : topicFolder === "flowers"
+          ? "flower9 "
+          : "fruit9 ";
+      imageTxt += "image9.png' alt=" + altTxt + " title=" + altTxt;
       break;
     case 10:
-      imageTxt += "image10.png' alt='hippo'";
+      altTxt =
+        topicFolder === "animals"
+          ? "hippo "
+          : topicFolder === "flowers"
+          ? "flower10 "
+          : "fruit10 ";
+      imageTxt += "image10.png' alt=" + altTxt + " title=" + altTxt;
       break;
     default:
       console.log("Cannot find image" + value);
@@ -95,6 +174,16 @@ function flipCard(cardCoordinate) {
         ) {
           cardBoard[line][column] = 0;
           cardBoard[oldSelection[0]][oldSelection[1]] = 0;
+        } else {
+          winningCards.push(cardBoard[line][column]);
+          winningCards.push(cardBoard[oldSelection[0]][oldSelection[1]]);
+          scoreDisplay.textContent = winningCards.length;
+          var progressWidth =
+            (winningCards.length * 100) / (cardBoard.length * cardBoard.length);
+          createProgressBar(progressWidth);
+          if (progressWidth === 100) {
+            alert("Congratulation you found all the matches");
+          }
         }
         createCardBoard();
         ready = true;

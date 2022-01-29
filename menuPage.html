@@ -24,11 +24,9 @@
         selectedTopic = document.getElementById("topic3").value;
         localStorage.setItem("topicValue", selectedTopic);
       } else {
-        selectedTopic="Please mark only one checkbox either";
+        selectedTopic = "Please mark only one checkbox either";
         localStorage.setItem("topicValue", selectedTopic);
       }
-      // var selectedTopic = checkCheckbox(top1, top2, top3);
-      // localStorage.setItem("topicValue", selectedTopic);
 
       return false;
 
@@ -53,28 +51,32 @@
 </head>
 
 <body>
-  <h1>MEMORY GAME -Configuration</h1>
+  <h2>MEMORY GAME -Settings</h2>
   <div class="settings">
 
     <section class="home">
       <form action="index.html">
-        <h2>select the topic of the pictures</h2>
+        <h3>select the topic of the pictures</h3>
         <div>
-          <input class="topicCheckbox" id="topic1" type="checkbox" name="choice1" value="flowers">flowers
-          <input class="topicCheckbox" id="topic2" type="checkbox" name="choice2" value="animals">animals
-          <input class="topicCheckbox" id="topic3" type="checkbox" name="choice3" value="fruits">fruits
+          <label class="container">Flowers
+            <input type="checkbox" class="topicCheckbox" id="topic1" name="choice1" value="Flowers">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Animals
+            <input type="checkbox" class="topicCheckbox" id="topic2" name="choice2" value="Animals">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Fruits
+            <input type="checkbox" class="topicCheckbox" id="topic3" name="choice3" value="Fruits">
+            <span class="checkmark"></span>
+          </label>
         </div>
         <div>
           <input class="btn btn-primary m-2" style="height: 50px; width: 100px" type="submit" value="Start"
             onclick="passvalues();">
-          <!--<button class="btn btn-primary m-2" style="height: 50px; width: 100px" onclick="passvalues();">Start hier</button>-->
         </div>
       </form>
     </section>
-
-
-    <!-- <a class="button" href="index.html"><strong>Start</strong></a> -->
-
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
