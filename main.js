@@ -36,7 +36,7 @@ function createCardBoard() {
         txt +=
           "<img src='" +
           getImage(cardBoard[i][j]) +
-          "style='height: 100px; width: 100px class='m-2'>";
+          "style='height: 100px; width: 100px class='m-1'>";
       }
     }
     txt += "</div>";
@@ -52,7 +52,7 @@ function createProgressBar(value) {
     score +
     " aria-valuemin='0' aria-valuemax='100' style='width:" +
     score +
-    "%'> <span class='sr-only'>" +
+    "%'><span class='sr-only'>" +
     score +
     "% Complete</span>";
   txt += "</div></div>";
