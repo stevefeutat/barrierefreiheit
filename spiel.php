@@ -17,6 +17,8 @@ $bilder = $_POST["bildwahl"];
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    
+    <link rel="stylesheet" href="stylesheet.css">
     <!-- collection[i].style.width = "200px"; -->
     <!-- collection[i].style.height = "200px"; -->
    
@@ -48,9 +50,11 @@ $bilder = $_POST["bildwahl"];
 
   <body>
     <h1><p class="text-center">MEMORY GAME</p></h1>
+    <div class="spielinformationen">
+      <h2> Spielinformationen: </h2>
     <?php 
         echo "Hallo $name <br />";
-        echo "Spielfeldgröße: $groesse <br />";
+        echo "Spielfeldgröße: $groesse Spielkarten <br />";
         if ($bilder == 1){
         echo "Motivwahl: Tiere <br />";
         } else {
@@ -58,7 +62,9 @@ $bilder = $_POST["bildwahl"];
         }
 
     ?>
-    <div class="container">
+    </div>
+
+    <div class="container2">
         <h2>Spielfeld</h2>
       <div id="result"></div>
     </div>
@@ -79,14 +85,14 @@ $bilder = $_POST["bildwahl"];
     <?php
        echo "var card ='$groesse';";
    ?>
-    if (card == 3){
+    if (card == 12){
     var cardBoard = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     [0, 0, 0, 0],
     ];
     } 
-    else if (card == 4){
+    else if (card == 16){
     var cardBoard = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -118,7 +124,7 @@ function createCardBoard() {
     for (var j = 0; j < cardBoard[i].length; j++) {
       if (cardBoard[i][j] === 0) {
         txt +=
-          "<button class='btn btn-primary m-2' style='height: 100px; width: 100px' onClick='flipCard(\"" +
+          "<button class='btn btn-primary m-2' style='height: 100px; width: 100px; padding:1%;' onClick='flipCard(\"" +
           i +
           "-" +
           j +
