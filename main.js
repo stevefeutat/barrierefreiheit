@@ -88,17 +88,17 @@ function createProgressBar(value) {
     " max='100'>" +
     score +
     " %</progress></div>";
-  var txt = "<div class='progress'style='height:30px;'>";
+  var txt = "<div class='progress'style='height:50px;'>";
   txt +=
     "<div class='progress-bar progress-bar' role='progressbar'aria-valuenow=" +
     score +
     " aria-valuemin='0' aria-valuemax='100' style='width:" +
     score +
-    "%'><span class='sr-only'>" +
+    "%'><span class='sr-only' style='font-size:20px;'>" +
     score +
     "% Complete</span>";
   txt += "</div></div>";
-  progressDisplay.innerHTML = txt2;
+  progressDisplay.innerHTML = txt;
 }
 
 function getImage(value) {
@@ -111,7 +111,7 @@ function getImage(value) {
           ? "bear "
           : topicFolder === "flowers"
           ? "flower1 "
-          : "fruit1 ";
+          : "";
       imageTxt += "image1.png' alt=" + altTxt + " title=" + altTxt;
       break;
     case 2:
