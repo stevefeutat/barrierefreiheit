@@ -3,14 +3,15 @@ const progressDisplay = document.querySelector("#myProgress");
 const topicDisplay = document.getElementById("topic");
 const topicFolder = localStorage.getItem("topicValue");
 topicDisplay.innerHTML = topicFolder;
+const dimDisplay = document.getElementById("dim");
+const boardDim = localStorage.getItem("dimm");
+dimDisplay.innerHTML = boardDim;
 const scoreDisplay = document.getElementById("score");
 scoreDisplay.textContent = 0;
-var cardBoard = [
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
-];
+
+var options = [];
+
+var cardBoard = getBoardWithDim(boardDim);
 
 var randomBoard = generateCardBoard();
 var oldSelection = [];
@@ -19,6 +20,41 @@ var numberOfDisplayedImages = 0;
 var ready = true;
 createCardBoard();
 createProgressBar(0);
+
+function getBoardWithDim(value) {
+  let board;
+  switch (value) {
+    case "12":
+      board = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+      ];
+      options = [0, 0, 0, 0, 0, 0];
+      break;
+    case "16":
+      board = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+      ];
+      options = [0, 0, 0, 0, 0, 0, 0, 0];
+      break;
+    case "20":
+      board = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+      ];
+      options = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      break;
+    default:
+      console.log("Cannot find board with dimmension " + value);
+  }
+  return board;
+}
 
 function createCardBoard() {
   var txt = "";
@@ -46,7 +82,12 @@ function createCardBoard() {
 
 function createProgressBar(value) {
   var score = (value / cardBoard.length) * cardBoard.length;
-  var txt2="<div style='text-align: center'><progress value="+score+" max='100'>"+score+" %</progress></div>";
+  var txt2 =
+    "<div style='text-align: center'><progress value=" +
+    score +
+    " max='100'>" +
+    score +
+    " %</progress></div>";
   var txt = "<div class='progress'style='height:30px;'>";
   txt +=
     "<div class='progress-bar progress-bar' role='progressbar'aria-valuenow=" +
@@ -180,7 +221,8 @@ function flipCard(cardCoordinate) {
           winningCards.push(cardBoard[oldSelection[0]][oldSelection[1]]);
           scoreDisplay.textContent = winningCards.length;
           var progressWidth =
-            (winningCards.length * 100) / (cardBoard.length * cardBoard.length);
+            (winningCards.length * 100) /
+            (cardBoard.length * cardBoard[0].length);
           createProgressBar(progressWidth);
           if (progressWidth === 100) {
             alert("Congratulation you found all the matches");
@@ -199,13 +241,12 @@ function flipCard(cardCoordinate) {
 
 function generateCardBoard() {
   var table = [];
-  var options = [0, 0, 0, 0, 0, 0, 0, 0];
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < cardBoard.length; i++) {
     var ligne = [];
-    for (var j = 0; j < 4; j++) {
+    for (var j = 0; j < cardBoard[0].length; j++) {
       var fin = false;
       while (!fin) {
-        var randomImage = Math.floor(Math.random() * 8);
+        var randomImage = Math.floor(Math.random() * options.length);
         if (options[randomImage] < 2) {
           ligne.push(randomImage + 1);
           options[randomImage]++;
